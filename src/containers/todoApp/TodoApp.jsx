@@ -25,7 +25,11 @@ const TodoApp = () => {
     const updatedTodoList = [...todoList];
     updatedTodoList.splice(index, 1);
     setTodoList(updatedTodoList);
-    setMessage("Todo removed");
+    if (Object.keys(todoList).length === 1) {
+      setMessage("All done! Good job :)");
+    } else {
+      setMessage("Todo removed");
+    }
   };
 
   return (
