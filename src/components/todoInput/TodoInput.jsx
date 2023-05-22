@@ -11,6 +11,13 @@ const TodoInput = (props) => {
     setNewTodo(e.target.value);
   };
 
+  const onKeyDownHandler = (e) => {
+    if (e.key === "Enter") {
+      props.addTodo(newTodo);
+      setNewTodo("");
+    }
+  };
+
   const onClickHandler = () => {
     props.addTodo(newTodo);
     setNewTodo("");
@@ -24,6 +31,7 @@ const TodoInput = (props) => {
         variant="standard"
         type="text"
         onChange={onChangeHandler}
+        onKeyDown={onKeyDownHandler}
         value={newTodo}
         fullWidth
       />
