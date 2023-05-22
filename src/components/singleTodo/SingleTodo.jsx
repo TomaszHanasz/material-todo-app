@@ -7,12 +7,16 @@ import "./singleTodo.style.css";
 
 const SingleTodo = (props) => {
   return (
-    <div>
+    <div className="single-todo-container">
       <ListItem
         className="list-item"
         disableGutters
         secondaryAction={
-          <IconButton aria-label="delete">
+          <IconButton
+            aria-label="delete"
+            style={{ borderRadius: 0 }}
+            color={props.colorRemove}
+          >
             <DeleteForeverIcon onClick={props.onRemove} />
           </IconButton>
         }

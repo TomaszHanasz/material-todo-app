@@ -28,7 +28,11 @@ const TodoInput = (props) => {
         fullWidth
       />
 
-      <IconButton aria-label="add" style={{ borderRadius: 0 }}>
+      <IconButton
+        aria-label="add"
+        style={{ borderRadius: 0, borderBottom: "1px solid #05454a" }}
+        color={props.color}
+      >
         <AddIcon onClick={onClickHandler} />
       </IconButton>
     </div>
