@@ -22,3 +22,22 @@ h2 {
   text-align: center;
   color: #05454a;
 }
+
+@media screen and (max-width: 1250px) {
+  .todo-container {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .todo-container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .todo-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
