@@ -50,6 +50,6 @@ h2 {
 @media screen and (max-width: 595px) {
   .todo-container {
     width: 100%;
-    margin: 10px 0;
+    margin: 11px 0;
   }
 }
