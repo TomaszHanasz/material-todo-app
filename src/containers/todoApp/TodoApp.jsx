@@ -7,11 +7,13 @@ import React, { useState } from "react";
 import "./todoApp.style.css";
 
 const TodoApp = () => {
-  const [todoList, setTodoList] = useState([]);
+  const defaultTodoList = localStorage.getItem("Todo List").split(",");
+  const [todoList, setTodoList] = useState([...defaultTodoList]);
   const [message, setMessage] = useState("Please add your first todo :)");
 
   const addTodoHandler = (newTodo) => {
     if (newTodo.length > 0) {
+      localStorage.setItem("Todo List", [...todoList, newTodo]);
       setTodoList([...todoList, newTodo]);
       setMessage("New Todo added");
     } else if (newTodo.length === 0) {
@@ -22,6 +24,7 @@ const TodoApp = () => {
   const removeTodoHandler = (index) => {
     const updatedTodoList = [...todoList];
     updatedTodoList.splice(index, 1);
+    localStorage.setItem("Todo List", [...updatedTodoList]);
     setTodoList(updatedTodoList);
     if (Object.keys(todoList).length === 1) {
       setMessage("All done! Good job :)");
