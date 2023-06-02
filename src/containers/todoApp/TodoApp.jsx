@@ -6,10 +6,8 @@ import theme from "../../components/theme/Theme";
 import React, { useState } from "react";
 import "./todoApp.style.css";
 
-const defaultTodoList = [];
-
 const TodoApp = () => {
-  const [todoList, setTodoList] = useState(defaultTodoList);
+  const [todoList, setTodoList] = useState([]);
   const [message, setMessage] = useState("Please add your first todo :)");
 
   const addTodoHandler = (newTodo) => {
@@ -51,6 +49,9 @@ const TodoApp = () => {
           })}
         </List>
       </div>
+      <p style={{ textAlign: "center", color: "white" }}>
+        Copyrights Tomasz Hanasz {new Date().getFullYear()}
+      </p>
     </ThemeProvider>
   );
 };
