@@ -7,8 +7,9 @@ import React, { useState } from "react";
 import "./todoApp.style.css";
 
 const TodoApp = () => {
-  const defaultTodoList = localStorage.getItem("Todo List").split(",");
-  const [todoList, setTodoList] = useState([...defaultTodoList]);
+  const defaultTodoList = localStorage.getItem("Todo List");
+  const initialTodoList = defaultTodoList ? defaultTodoList.split(",") : [];
+  const [todoList, setTodoList] = useState([...initialTodoList]);
   const [message, setMessage] = useState("Please add your first todo :)");
 
   const addTodoHandler = (newTodo) => {
