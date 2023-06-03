@@ -9,7 +9,7 @@ import "./todoApp.style.css";
 const TodoApp = () => {
   const defaultTodoList = localStorage.getItem("Todo List").split(",");
   const [todoList, setTodoList] = useState([...defaultTodoList]);
-  const [message, setMessage] = useState("Please add your first todo :)");
+  const [message, setMessage] = useState("Please add todo :)");
 
   const addTodoHandler = (newTodo) => {
     if (newTodo.length > 0) {
