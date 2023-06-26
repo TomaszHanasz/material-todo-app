@@ -11,8 +11,8 @@ const TodoApp = () => {
   const [todoList, setTodoList] = useState([...defaultTodoList]);
   const [message, setMessage] = useState("Please add todo :)");
 
-  if (todoList.length < 0) {
-    setTodoList(null);
+  if (defaultTodoList.length < 0) {
+    setTodoList([...todoList, "Hello :)"]);
   }
 
   const addTodoHandler = (newTodo) => {
