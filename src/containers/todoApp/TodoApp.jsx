@@ -11,6 +11,10 @@ const TodoApp = () => {
   const [todoList, setTodoList] = useState([...defaultTodoList]);
   const [message, setMessage] = useState("Please add todo :)");
 
+  if (todoList.length < 0) {
+    setTodoList(null);
+  }
+
   const addTodoHandler = (newTodo) => {
     if (newTodo.length > 0) {
       localStorage.setItem("Todo List", [...todoList, newTodo]);
