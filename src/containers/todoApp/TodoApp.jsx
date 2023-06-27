@@ -3,20 +3,13 @@ import TodoInput from "../../components/todoInput/TodoInput";
 import List from "@mui/material/List";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../components/theme/Theme";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./todoApp.style.css";
 
 const TodoApp = () => {
-  const placeholderTodoList = ["eat", "work", "sleep"];
   const defaultTodoList = localStorage.getItem("Todo List").split(",");
   const [todoList, setTodoList] = useState([...defaultTodoList]);
   const [message, setMessage] = useState("Please add todo :)");
-
-  useEffect(() => {
-    if (defaultTodoList.length < 1) {
-      setTodoList(placeholderTodoList);
-    }
-  }, []);
 
   const addTodoHandler = (newTodo) => {
     if (newTodo.length > 0) {
