@@ -42,7 +42,7 @@ const TodoApp = () => {
           <TodoInput addTodo={addTodoHandler} color="primary" />
           <h2>{message}</h2>
           {defaultTodoList.length < 1
-            ? placeholderTodoList
+            ? setTodoList(placeholderTodoList)
             : todoList.map((el, index) => {
                 return (
                   <SingleTodo
