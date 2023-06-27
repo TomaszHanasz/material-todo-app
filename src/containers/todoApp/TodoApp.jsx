@@ -3,7 +3,7 @@ import TodoInput from "../../components/todoInput/TodoInput";
 import List from "@mui/material/List";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../components/theme/Theme";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./todoApp.style.css";
 
 const TodoApp = () => {
@@ -11,6 +11,12 @@ const TodoApp = () => {
   const defaultTodoList = localStorage.getItem("Todo List").split(",");
   const [todoList, setTodoList] = useState([...defaultTodoList]);
   const [message, setMessage] = useState("Please add todo :)");
+
+  useEffect(() => {
+    if (defaultTodoList.length < 1) {
+      setTodoList(placeholderTodoList);
+    }
+  }, []);
 
   const addTodoHandler = (newTodo) => {
     if (newTodo.length > 0) {
@@ -41,18 +47,16 @@ const TodoApp = () => {
         <List sx={{ bgcolor: "background.paper" }} className="todo-box">
           <TodoInput addTodo={addTodoHandler} color="primary" />
           <h2>{message}</h2>
-          {defaultTodoList.length < 1
-            ? setTodoList(placeholderTodoList)
-            : todoList.map((el, index) => {
-                return (
-                  <SingleTodo
-                    name={el}
-                    key={index}
-                    onRemove={() => removeTodoHandler(index)}
-                    colorRemove="secondary"
-                  />
-                );
-              })}
+          {todoList.map((el, index) => {
+            return (
+              <SingleTodo
+                name={el}
+                key={index}
+                onRemove={() => removeTodoHandler(index)}
+                colorRemove="secondary"
+              />
+            );
+          })}
         </List>
       </div>
       <p style={{ textAlign: "center", color: "white" }}>
