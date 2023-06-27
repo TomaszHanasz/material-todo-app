@@ -7,13 +7,10 @@ import React, { useState } from "react";
 import "./todoApp.style.css";
 
 const TodoApp = () => {
+  const placeholderTodoList = ["eat", "work", "sleep"];
   const defaultTodoList = localStorage.getItem("Todo List").split(",");
   const [todoList, setTodoList] = useState([...defaultTodoList]);
   const [message, setMessage] = useState("Please add todo :)");
-
-  if (defaultTodoList.length < 0) {
-    setTodoList([...todoList, "Hello :)"]);
-  }
 
   const addTodoHandler = (newTodo) => {
     if (newTodo.length > 0) {
@@ -44,16 +41,18 @@ const TodoApp = () => {
         <List sx={{ bgcolor: "background.paper" }} className="todo-box">
           <TodoInput addTodo={addTodoHandler} color="primary" />
           <h2>{message}</h2>
-          {todoList.map((el, index) => {
-            return (
-              <SingleTodo
-                name={el}
-                key={index}
-                onRemove={() => removeTodoHandler(index)}
-                colorRemove="secondary"
-              />
-            );
-          })}
+          {defaultTodoList.length < 1
+            ? placeholderTodoList
+            : todoList.map((el, index) => {
+                return (
+                  <SingleTodo
+                    name={el}
+                    key={index}
+                    onRemove={() => removeTodoHandler(index)}
+                    colorRemove="secondary"
+                  />
+                );
+              })}
         </List>
       </div>
       <p style={{ textAlign: "center", color: "white" }}>
