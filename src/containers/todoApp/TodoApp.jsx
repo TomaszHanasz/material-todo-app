@@ -3,20 +3,28 @@ import TodoInput from "../../components/todoInput/TodoInput";
 import List from "@mui/material/List";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../components/theme/Theme";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./todoApp.style.css";
 
 const TodoApp = () => {
-  const defaultTodoList = localStorage.getItem("Todo List").split(",");
+  const storedTodoList = localStorage.getItem("Todo List");
+  const defaultTodoList = storedTodoList ? storedTodoList.split(",") : [];
   const [todoList, setTodoList] = useState([...defaultTodoList]);
-  const [message, setMessage] = useState("Please add todo :)");
+  const [message, setMessage] = useState("Please add a todo :)");
+
+  useEffect(() => {
+    if (storedTodoList) {
+      setTodoList([...defaultTodoList]);
+    } // eslint-disable-next-line
+  }, [storedTodoList]);
 
   const addTodoHandler = (newTodo) => {
     if (newTodo.length > 0) {
-      localStorage.setItem("Todo List", [...todoList, newTodo]);
-      setTodoList([...todoList, newTodo]);
-      setMessage("New Todo added");
-    } else if (newTodo.length === 0) {
+      const updatedTodoList = [...todoList, newTodo];
+      localStorage.setItem("Todo List", updatedTodoList.join(","));
+      setTodoList(updatedTodoList);
+      setMessage("New todo added");
+    } else {
       setMessage("Field cannot be empty");
     }
   };
@@ -24,9 +32,9 @@ const TodoApp = () => {
   const removeTodoHandler = (index) => {
     const updatedTodoList = [...todoList];
     updatedTodoList.splice(index, 1);
-    localStorage.setItem("Todo List", [...updatedTodoList]);
+    localStorage.setItem("Todo List", updatedTodoList.join(","));
     setTodoList(updatedTodoList);
-    if (Object.keys(todoList).length === 1) {
+    if (updatedTodoList.length === 0) {
       setMessage("All done! Good job :)");
     } else {
       setMessage("Todo removed");
